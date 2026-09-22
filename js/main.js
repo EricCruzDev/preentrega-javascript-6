@@ -97,3 +97,32 @@ function mostrarNombres() {
 
 document.querySelector("#btnDisponibles").addEventListener("click", mostrarDisponibles);
 document.querySelector("#btnNombres").addEventListener("click", mostrarNombres);
+
+function comprarProducto() {
+    const nombre = prompt("¿Qué producto querés comprar?");
+
+    const productoEncontrado = productos.find(
+        (producto) =>
+            producto.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+
+    if (productoEncontrado) {
+        const cantidad = parseInt(
+            prompt("¿Cuántas unidades querés comprar?")
+        );
+
+        if (!isNaN(cantidad) && cantidad > 0) {
+            const mensaje = productoEncontrado.vender(cantidad);
+
+            resultado.innerHTML = `<p>${mensaje}</p>`;
+
+            mostrarProductos(productos);
+        } else {
+            resultado.innerHTML = "<p>Ingresá una cantidad válida.</p>";
+        }
+    } else {
+        resultado.innerHTML = "<p>El producto no se encuentra.</p>";
+    }
+}
+
+document.querySelector("#btnComprar").addEventListener("click", comprarProducto);
