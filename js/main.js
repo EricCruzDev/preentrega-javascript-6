@@ -21,3 +21,23 @@ const producto2 = new Producto("Leche", 1200, "Lácteos", 8);
 const producto3 = new Producto("Arroz", 1800, "Alimentos", 15);
 
 const productos = [producto1, producto2, producto3];
+
+const listaProductos = document.querySelector("#listaProductos");
+const resultado = document.querySelector("#resultado");
+
+function mostrarProductos(productos) {
+    listaProductos.innerHTML = "";
+
+    productos.forEach((producto) => {
+        listaProductos.innerHTML += `
+            <article class="producto">
+                <h3>${producto.nombre}</h3>
+                <p>Precio: $${producto.precio}</p>
+                <p>Categoría: ${producto.categoria}</p>
+                <p>Stock: ${producto.stock}</p>
+            </article>
+        `;
+    });
+}
+
+mostrarProductos(productos);
