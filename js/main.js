@@ -68,3 +68,32 @@ function buscarProducto() {
 }
 
 document.querySelector("#btnBuscar").addEventListener("click", buscarProducto);
+
+function mostrarDisponibles() {
+    const productosDisponibles = productos.filter(
+        (producto) => producto.stock > 0
+    );
+
+    resultado.innerHTML = "<h3>Productos disponibles</h3>";
+
+    productosDisponibles.forEach((producto) => {
+        resultado.innerHTML += `
+            <p class="resultado-item">
+                ${producto.nombre} - Stock: ${producto.stock}
+            </p>
+        `;
+    });
+}
+
+function mostrarNombres() {
+    const nombresProductos = productos.map(
+        (producto) => producto.nombre
+    );
+
+    resultado.innerHTML = `
+        <p>${nombresProductos.join(", ")}</p>
+    `;
+}
+
+document.querySelector("#btnDisponibles").addEventListener("click", mostrarDisponibles);
+document.querySelector("#btnNombres").addEventListener("click", mostrarNombres);
