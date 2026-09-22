@@ -41,3 +41,30 @@ function mostrarProductos(productos) {
 }
 
 mostrarProductos(productos);
+
+function buscarProducto() {
+    const nombre = prompt("¿Qué producto querés buscar?");
+
+    const productoEncontrado = productos.find(
+        (producto) =>
+            producto.nombre.toLowerCase() === nombre.toLowerCase()
+    );
+
+    if (productoEncontrado) {
+        resultado.innerHTML = `
+            <p class="resultado-item">
+                Producto encontrado: <strong>${productoEncontrado.nombre}</strong>
+            </p>
+            <p class="resultado-item">
+                Precio: $${productoEncontrado.precio}
+            </p>
+            <p class="resultado-item">
+                Stock: ${productoEncontrado.stock}
+            </p>
+        `;
+    } else {
+        resultado.innerHTML = "<p>El producto no se encuentra.</p>";
+    }
+}
+
+document.querySelector("#btnBuscar").addEventListener("click", buscarProducto);
